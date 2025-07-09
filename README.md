@@ -5,7 +5,7 @@ This repository contains a simple web application that allows you to load exam q
 ## Usage
 
 1. Open `index.html` in a web browser.
-2. Paste a JSON array of question objects into the textarea. Each question should follow this structure:
+2. Select a JSON file containing an array of question objects using the file picker. Each question should follow this structure:
 
 ```json
 [
