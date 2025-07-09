@@ -8,20 +8,31 @@ const questionContainer = document.getElementById('questionContainer');
 const resultDiv = document.getElementById('result');
 const scoreP = document.getElementById('score');
 const wrongDiv = document.getElementById('wrongAnswers');
+const fileInput = document.getElementById('fileInput');
 
 document.getElementById('startBtn').onclick = () => {
- try {
-   questions = JSON.parse(document.getElementById('questionInput').value);
-   if (!Array.isArray(questions)) throw new Error('Invalid format');
-   setupDiv.style.display = 'none';
-   examDiv.style.display = 'block';
-   currentQuestion = 0;
-   wrong = [];
-   correctCount = 0;
-   showQuestion();
- } catch (err) {
-   alert('Could not parse questions: ' + err.message);
+ const file = fileInput.files[0];
+ if (!file) {
+   alert('Please select a JSON file.');
+   return;
  }
+ const reader = new FileReader();
+ reader.onload = () => {
+   try {
+     questions = JSON.parse(reader.result);
+     if (!Array.isArray(questions)) throw new Error('Invalid format');
+     setupDiv.style.display = 'none';
+     examDiv.style.display = 'block';
+     currentQuestion = 0;
+     wrong = [];
+     correctCount = 0;
+     showQuestion();
+   } catch (err) {
+     alert('Could not parse questions: ' + err.message);
+   }
+ };
+ reader.onerror = () => alert('Error reading file.');
+ reader.readAsText(file);
 };
 
 document.getElementById('nextBtn').onclick = () => {
@@ -47,7 +58,7 @@ document.getElementById('nextBtn').onclick = () => {
 document.getElementById('restartBtn').onclick = () => {
  resultDiv.style.display = 'none';
  setupDiv.style.display = 'block';
- document.getElementById('questionInput').value = '';
+ fileInput.value = '';
 };
 
 function showQuestion() {
