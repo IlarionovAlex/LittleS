@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Exam App</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>Exam App</h1>
+<div id="setup">
+<h2>Load Questions</h2>
+<p>Paste JSON of questions:</p>
+<textarea id="questionInput" rows="10" cols="50"></textarea><br>
+<button id="startBtn">Start Exam</button>
+</div>
+<div id="exam" style="display:none;">
+<div id="questionContainer"></div>
+<button id="nextBtn">Next</button>
+</div>
+<div id="result" style="display:none;">
+<h2>Results</h2>
+<p id="score"></p>
+<div id="wrongAnswers"></div>
+<button id="restartBtn">Restart</button>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
