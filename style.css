@@ -1,4 +1,13 @@
-body { font-family: Arial, sans-serif; margin: 20px; }
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  text-align: center;
+}
+#setup,
+#exam,
+#result {
+  text-align: center;
+}
 #questionContainer { margin-bottom: 20px; }
 .wrong { color: red; }
 .correct { color: green; }
