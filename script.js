@@ -73,9 +73,9 @@ function finish() {
  scoreP.textContent = `Score: ${correctCount}/${questions.length}`;
  const list = wrong.map(item => {
    const correct = item.q.answers.find(a => a.correct);
-   return `<div class='wrong'><strong>${item.q.question}</strong><br>` +
-     `Your answer: ${item.q.answers[item.chosen].text}<br>` +
-     `Correct answer: ${correct.text}</div>`;
+  return `<div class='wrong'><strong>${item.q.question}</strong><br>` +
+    `Your answer: ${item.q.answers[item.chosen].text}<br>` +
+    `Correct answer: <span class="correct">${correct.text}</span></div>`;
  }).join('<hr>');
  wrongDiv.innerHTML = list || '<p class="correct">All answers correct!</p>';
 }
