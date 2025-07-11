@@ -45,7 +45,7 @@ document.getElementById('nextBtn').onclick = () => {
  if (questions[currentQuestion].answers[idx].correct) {
    correctCount++;
  } else {
-   wrong.push({q: questions[currentQuestion], chosen: idx});
+  wrong.push({q: questions[currentQuestion], chosen: idx, number: currentQuestion + 1});
  }
  currentQuestion++;
  if (currentQuestion < questions.length) {
@@ -62,9 +62,11 @@ document.getElementById('restartBtn').onclick = () => {
 };
 
 function showQuestion() {
- const q = questions[currentQuestion];
- questionContainer.innerHTML = `<h3>${q.question}</h3>` +
-   q.answers.map((a, i) => `<label><input type="radio" name="answer" value="${i}"> ${a.text}</label><br>`).join('');
+  const q = questions[currentQuestion];
+  questionContainer.innerHTML = `<h3>${currentQuestion + 1}. ${q.question}</h3>` +
+    q.answers.map((a, i) =>
+      `<label><input type="radio" name="answer" value="${i}"> ${a.text}</label><br>`
+    ).join('');
 }
 
 function finish() {
@@ -73,7 +75,7 @@ function finish() {
  scoreP.textContent = `Score: ${correctCount}/${questions.length}`;
  const list = wrong.map(item => {
    const correct = item.q.answers.find(a => a.correct);
-  return `<div class='wrong'><strong>${item.q.question}</strong><br>` +
+  return `<div class='wrong'><strong>${item.number}. ${item.q.question}</strong><br>` +
     `Your answer: ${item.q.answers[item.chosen].text}<br>` +
     `Correct answer: <span class="correct">${correct.text}</span></div>`;
  }).join('<hr>');
